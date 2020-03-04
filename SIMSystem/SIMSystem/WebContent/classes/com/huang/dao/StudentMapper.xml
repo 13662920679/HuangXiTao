@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huang.dao.StudentMapper">
+
+	<select id="selectStu" resultType="student">
+		SELECT * FROM t_student 
+		<trim prefix="WHERE" prefixOverrides="and|or" >
+			<if test="sid!=null and sid!=''">AND sid LIKE CONCAT('%',#{sid},'%')</if>
+			<if test="sname!=null and sname!=''">AND sname LIKE CONCAT('%',#{sname},'%')</if>
+			<if test="sclass!=null and sclass!=''">AND sclass=#{sclass}</if>
+		</trim>	
+	</select>
+	
+	
+	<select id="showAllStuBySid"  resultType="student">
+		select * from t_student ORDER BY sid
+	</select>
+	
+	<select id="showAllStuBySname"  resultType="student">
+		select * from t_student ORDER BY sname
+	</select>
+	
+	<select id="showAllStuBySsex"  resultType="student">
+		select * from t_student ORDER BY ssex
+	</select>
+	
+	<select id="showAllStuBySbirth"  resultType="student">
+		select * from t_student ORDER BY sbirth
+	</select>
+	
+	<select id="showAllStuBySclass"  resultType="student">
+		select * from t_student ORDER BY sclass
+	</select>
+	
+	
+	<delete id="delStu">
+		delete from t_student where sid=#{sid}
+	</delete>
+	
+	<insert id="addStu" parameterType="student">
+		INSERT INTO t_student(sid,sname,ssex,sbirth,sclass) VALUES(#{sid},#{sname},#{ssex},#{sbirth},#{sclass})
+	</insert>
+	
+	<update id="updStu" >
+		update t_student set sid=#{s.sid},sname=#{s.sname},ssex=#{s.ssex},sbirth=#{s.sbirth},sclass=#{s.sclass} where sid=#{sId}
+	</update>
+	
+	<select id="selectOneStu" parameterType="String" resultType="student">
+		select * from t_student where sid=#{sid}
+	</select>
+	
+</mapper>

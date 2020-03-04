@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huang.dao.UserMapper">
+	<select id="loginDao" parameterType="user" resultType="user">
+		select * from t_user where uid=#{uid} and upwd=#{upwd}
+	</select>
+	
+	<insert id="regDao" parameterType="user">
+		insert into t_user(uid,uname,upwd) values(#{uid},#{uname},#{upwd})
+	</insert>
+	
+	<update id="changePwdDao">
+		update t_user set upwd=#{upwd} where uid=#{uid}
+	</update>
+</mapper>

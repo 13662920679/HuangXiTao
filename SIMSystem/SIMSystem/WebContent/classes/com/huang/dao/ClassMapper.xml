@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huang.dao.ClassMapper">
+
+	<select id="showAllClassByCid" resultType="class">
+		SELECT * FROM t_class
+	</select>
+	
+	<delete id="delClass">
+		delete from t_class where cid=#{cid}
+	</delete>
+	
+	<select id="selectClass" resultType="class">
+		SELECT * FROM t_class WHERE cid=#{cid}
+	</select>
+	
+	<select id="selectOneClass" resultType="class">
+		SELECT * FROM t_class WHERE cid=#{cid}
+	</select>
+	
+	<update id="updClass">
+		update t_class set ctJava=#{ctJava},ctPython=#{ctPython},ctC=#{ctC} where cid=#{cid}
+	</update>
+
+</mapper>
